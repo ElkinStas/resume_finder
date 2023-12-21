@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Resume Finder</title>
+</head>
+<body>
+    <h1>Resume Finder</h1>
+    
+    <form method="post">
+        <label for="wanna_job">Wanna Job:</label>
+        <input type="text" name="wanna_job" required><br>
+
+        <label for="expa">Experience:</label>
+        <input type="text" name="expa" required><br>
+
+        <label for="city">City:</label>
+        <input type="text" name="city"><br>
+
+        <label for="relocation_ready">Relocation Ready:</label>
+        <input type="checkbox" name="relocation_ready"><br>
+
+        <input type="submit" value="Find Resumes">
+    </form>
+
+    {% if similar_documents %}
+        <h2>Top 10 Similar Resumes:</h2>
+        <ul>
+            {% for result in similar_documents %}
+                <li>
+                    <strong>Cosine Similarity:</strong> {{ result.cosine_similarity }}<br>
+                    <strong>Document:</strong> {{ result.document }}<br>
+                    <hr>
+                </li>
+            {% endfor %}
+        </ul>
+    {% endif %}
+</body>
+</html>
+
